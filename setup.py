@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pymoodo",
-    version="0.0.1",
+    version="0.0.3",
     author="Alex van Assem",
     author_email="avassem@gmail.com",
     description="Python client to communicate with Moodo API",
