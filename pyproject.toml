@@ -1,9 +1,11 @@
 [tool.poetry]
 name = "pymoodo"
-version = "0.1.0"
-description = ""
-authors = ["Alex van Assem"]
+version = "0.0.3"
+description ="Python client to communicate with Moodo API"
+readme = "README.md"
+authors = ["Alex van Assem <avassem@gmail.com>"]
 license = "MIT license"
+homepage = "https://github.com/avassem85/pymoodo"
 
 [tool.poetry.dependencies]
 python = "^3.9"
