@@ -14,7 +14,7 @@ class MoodoBox:
 
     def update(self, box):
         self.__box = box
-        _LOGGER.debug('Box with key %s updated', self.id)
+        _LOGGER.info('Box with key %s updated by ws_event', self.device_key)
         self.log()
 
     def __processslots(self):

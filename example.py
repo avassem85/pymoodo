@@ -1,11 +1,11 @@
-from pymoodo import Controller
 import asyncio
 import sys
 import logging
+from pymoodo import Controller
 
 logging.basicConfig(format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                     datefmt='%d-%m %H:%M',
-                    level=logging.DEBUG)
+                    level=logging.INFO)
 
 async def main(email, password):
     controller = await Controller(email, password)
