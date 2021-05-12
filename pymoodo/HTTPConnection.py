@@ -2,8 +2,11 @@ import calendar
 import datetime
 import json
 import requests
+import logging
 
-class Connection(object):
+_LOGGER = logging.getLogger(__name__)
+
+class HTTPConnection(object):
     """Connection to Moodo API"""
     def __init__(self, email, password):
         """Initialize connection object"""
@@ -33,13 +36,13 @@ class Connection(object):
             response.raise_for_status()
             return json.loads(response.content.decode('utf-8')) if response.status_code == 200 else None 
         except requests.exceptions.HTTPError as errh:
-            print ("Http Error:",errh)
+            _LOGGER.error("Http Error: %s",errh)
         except requests.exceptions.ConnectionError as errc:
-            print ("Error Connecting:",errc)
+            _LOGGER.error("Error Connecting: %s",errc)
         except requests.exceptions.Timeout as errt:
-            print ("Timeout Error:",errt)
+            _LOGGER.error("Timeout Error: %s",errt)
         except requests.exceptions.RequestException as err:
-            print ("OOps: Something Else",err)
+            _LOGGER.error("OOps: Something Else %s",err)
             
     def put(self, command, data={}):
         """Utility command to put data to API"""
@@ -51,13 +54,13 @@ class Connection(object):
             response.raise_for_status()
             return json.loads(response.content.decode('utf-8')) if response.status_code == 200 else None 
         except requests.exceptions.HTTPError as errh:
-            print ("Http Error:",errh)
+            _LOGGER.error("Http Error: %s",errh)
         except requests.exceptions.ConnectionError as errc:
-            print ("Error Connecting:",errc)
+            _LOGGER.error("Error Connecting: %s",errc)
         except requests.exceptions.Timeout as errt:
-            print ("Timeout Error:",errt)
+            _LOGGER.error("Timeout Error: %s",errt)
         except requests.exceptions.RequestException as err:
-            print ("OOps: Something Else",err)
+            _LOGGER.error("OOps: Something Else %s",err)
 
     def patch(self, command, data={}):
         """Utility command to patch data to the API"""
@@ -69,13 +72,13 @@ class Connection(object):
             response.raise_for_status()
             return json.loads(response.content.decode('utf-8')) if response.status_code == 200 else None 
         except requests.exceptions.HTTPError as errh:
-            print ("Http Error:",errh)
+            _LOGGER.error("Http Error: %s",errh)
         except requests.exceptions.ConnectionError as errc:
-            print ("Error Connecting:",errc)
+            _LOGGER.error("Error Connecting: %s",errc)
         except requests.exceptions.Timeout as errt:
-            print ("Timeout Error:",errt)
+            _LOGGER.error("Timeout Error: %s",errt)
         except requests.exceptions.RequestException as err:
-            print ("OOps: Something Else",err)
+            _LOGGER.error("OOps: Something Else %s",err)
 
     def delete(self, command):
         """Utility command to patch data to the API"""
@@ -87,13 +90,13 @@ class Connection(object):
             response.raise_for_status()
             return json.loads(response.content.decode('utf-8')) if response.status_code == 200 else None 
         except requests.exceptions.HTTPError as errh:
-            print ("Http Error:",errh)
+            _LOGGER.error("Http Error: %s",errh)
         except requests.exceptions.ConnectionError as errc:
-            print ("Error Connecting:",errc)
+            _LOGGER.error("Error Connecting: %s",errc)
         except requests.exceptions.Timeout as errt:
-            print ("Timeout Error:",errt)
+            _LOGGER.error("Timeout Error: %s",errt)
         except requests.exceptions.RequestException as err:
-            print ("OOps: Something Else",err)
+            _LOGGER.error("OOps: Something Else %s",err)
 
     def post(self, command, data={}):
         """Utility command to post data to the API"""
@@ -105,14 +108,16 @@ class Connection(object):
             response.raise_for_status()
             return json.loads(response.content.decode('utf-8')) if response.status_code == 200 else None 
         except requests.exceptions.HTTPError as errh:
-            print ("Http Error:",errh)
+            _LOGGER.error("Http Error: %s",errh)
+            response_dict = json.loads(response.text)
+            if response_dict['error']:
+                _LOGGER.error(response_dict['error'])
         except requests.exceptions.ConnectionError as errc:
-            print ("Error Connecting:",errc)
+            _LOGGER.error("Error Connecting: %s",errc)
         except requests.exceptions.Timeout as errt:
-            print ("Timeout Error:",errt)
+            _LOGGER.error("Timeout Error: %s",errt)
         except requests.exceptions.RequestException as err:
-            print ("OOps: Something Else",err)
-
+            _LOGGER.error("OOps: Something Else %s",err)
 
     def __login(self):
         self.__setheaders()

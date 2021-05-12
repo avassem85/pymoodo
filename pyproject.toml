@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "pymoodo"
+version = "0.0.4"
+description ="Python client to communicate with Moodo API"
+readme = "README.md"
+authors = ["Alex van Assem <avassem@gmail.com>"]
+license = "MIT license"
+homepage = "https://github.com/avassem85/pymoodo"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.25.1"
+python-socketio = {extras = ["asyncio_client"], version = "^4.6.1"}
+asyncio = "^3.4.3"
+python-engineio = "^3.14.2"
+asyncinit = "^0.2.4"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
